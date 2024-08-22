@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire Lettre</title>
+</head>
+
+<body>
+
+  <form id="letterForm">
+    <!-- Sender -->
+    <label for="senderName">Nom de l'expéditeur:</label>
+    <input type="text" id="senderName" name="senderName" value="Loïc THIAW-WING-KAÏ"><br><br>
+
+    <label for="senderAddress">Adresse de l'expéditeur:</label>
+    <input type="text" id="senderAddress" name="senderAddress" value="84 RUE AUGUSTE LACAUSSADE"><br><br>
+
+    <label for="senderTown">Ville de l'expéditeur:</label>
+    <input type="text" id="senderTown" name="senderTown" value="LA SALINE"><br><br>
+
+    <label for="senderZipCode">Code postal de l'expéditeur:</label>
+    <input type="text" id="senderZipCode" name="senderZipCode" value="97434"><br><br>
+
+    <label for="senderPhone">Téléphone de l'expéditeur:</label>
+    <input type="text" id="senderPhone" name="senderPhone" value="(+33) 06.164.162.80"><br><br>
+
+    <label for="senderEmail">Mail de l'expéditeur:</label>
+    <input type="email" id="senderEmail" name="senderEmail" value="twkloic@gmail.com"><br><br>
+
+    <!-- Receiver -->
+    <label for="receiverName">Nom du destinataire:</label>
+    <input type="text" id="receiverName" name="receiverName" value="Apple"><br><br>
+
+    <label for="receiverAddress">Adresse du destinataire:</label>
+    <input type="text" id="receiverAddress" name="receiverAddress" value="One Apple Park Way"><br><br>
+
+    <label for="receiverTown">Ville du destinataire:</label>
+    <input type="text" id="receiverTown" name="receiverTown" value="Californie"><br><br>
+
+    <label for="receiverZipCode">Code postal du destinataire:</label>
+    <input type="text" id="receiverZipCode" name="receiverZipCode" value="Cupertino"><br><br>
+
+    <label for="receiverPhone">Téléphone du destinataire:</label>
+    <input type="text" id="receiverPhone" name="receiverPhone" value="01.23.45.67.89"><br><br>
+
+    <label for="receiverEmail">Mail du destinataire:</label>
+    <input type="email" id="receiverEmail" name="receiverEmail" value="apple@apple.com"><br><br>
+
+    <!-- Letter -->
+    <label for="letterTitle">Titre :</label>
+    <input type="text" id="letterTitle" name="letterTitle" value="Candidature au poste de XXX"><br><br>
+
+    <label for="object">Objet :</label>
+    <input type="text" id="object" name="object" value="Candidature au poste de XXX"><br><br>
+
+    <label for="subject">Sujet :</label>
+    <textarea name="subject" id="subject" rows="20" cols="60">
+      Madame, Monsieur,
+
+      Je me permets de vous adresser ma candidature pour le poste de Développeur Backend Symfony au sein de votre entreprise, suite à [mentionner la source de l'annonce d'emploi ou la recommandation, le cas échéant].
+
+      Fort de plus de 7 années d'expérience dans le domaine du développement web, notamment en tant que développeur PHP/Symfony, je suis passionné par les technologies web et particulièrement par la conception et le développement de solutions robustes et évolutives.
+
+      Au cours de mon parcours professionnel, j'ai eu l'opportunité de travailler sur divers projets stimulants, allant de la création de sites web complexes sous Symfony à la mise en place de solutions e-commerce avec Prestashop, en passant par le développement sur Drupal. Ces expériences m'ont permis d'acquérir une solide expertise dans le développement backend, ainsi qu'une bonne maîtrise des technologies telles que PHP, Symfony, MariaDB et Docker, entre autres.
+
+      Plus récemment, au sein de DP News - Janvier, j'ai eu l'occasion de mettre en œuvre des processus de développement efficaces, de participer à la conception et à la mise en place d'architectures web robustes, et de travailler en étroite collaboration avec les équipes DevOps pour assurer le déploiement et la maintenance des applications. Par exemple, j'ai contribué à la création de modules Drupal personnalisés et à la migration de sites vers des versions plus récentes.
+
+      Je suis particulièrement attiré par votre entreprise en raison de [mentionner des éléments spécifiques à l'entreprise]. Votre engagement envers [valeurs de l'entreprise] et votre ambition de [objectifs de l'entreprise] résonnent profondément avec mes propres valeurs et objectifs professionnels.
+
+      Je suis convaincu que mon expérience, ma passion pour la technologie et ma capacité à relever les défis techniques seront des atouts précieux pour contribuer au succès de votre entreprise. Mon expertise en développement backend, couplée à ma familiarité avec les pratiques DevOps, me permettra de m'intégrer rapidement et d'apporter une contribution significative à vos projets.
+
+      Je me tiens à votre disposition pour toute information complémentaire ou pour convenir d'un entretien afin de discuter de ma candidature. Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+      Cordialement,
+    </textarea>
+    <br><br>
+
+
+    <!-- Les autres champs du formulaire pour les autres parties de la lettre -->
+
+    <button type="submit">Générer la lettre</button>
+  </form>
+
+  <script>
+    document.getElementById('letterForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+      const jsonData = {};
+
+      for (const [key, value] of formData.entries()) {
+        jsonData[key] = value;
+      }
+
+      const jsonStr = JSON.stringify(jsonData, null, 2);
+      console.log(jsonStr);
+      // Ici, vous pouvez utiliser les données JSON pour générer la lettre dans le format souhaité
+
+      localStorage.setItem('letterData', JSON.stringify(jsonData));
+      window.location.href = 'letter.html';
+    });
+  </script>
+</body>
+
+</html>

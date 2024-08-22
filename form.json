@@ -1,0 +1,25 @@
+{
+  "entreprise": {
+    "nom": "Entreprise XYZ",
+    "adresse": "123 Rue de la Fontaine, 75001 Paris",
+    "contact": {
+      "telephone": "01 23 45 67 89",
+      "email": "contact@entreprise.com"
+    }
+  },
+  "expediteur": {
+    "nom": "",
+    "adresse": "",
+    "ville": "",
+    "code_postal": ""
+  },
+  "destinataire": {
+    "nom": "",
+    "adresse": "",
+    "ville": "",
+    "code_postal": ""
+  },
+  "date": "6 août 2024",
+  "objet": "Objet de la lettre",
+  "corps": "Corps de la lettre..."
+}

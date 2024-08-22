@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lettre générée</title>
+
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet"/>
+
+    <style>
+      body {
+        /* color: black; */
+        font-family: Arial, sans-serif;
+        margin: 50px;
+      }
+      .header {
+        ;
+        /* margin-bottom: 30px; */
+      }
+      .sender-info {
+        /* margin-bottom: 20px; */
+      }
+      .date {
+        float: right;
+      }
+      .subject {
+        font-weight: bold;
+        /* margin-bottom: 20px; */
+      }
+      .body {
+        text-align: justify;
+      }
+      .signature {
+        float: right;
+        /* margin-top: 50px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-black">
+      <div class="header text-center mb-4">
+        <h1 id="receiverName"></h1>
+        <p class="mb-0" id="receiverAddressTownZipCode"></p>
+        <p class="mb-0">
+          Tél :
+          <span id="receiverPhone"></span>
+          - Email :
+          <span id="receiverEmail"></span>
+        </p>
+      </div>
+      <div class="sender-info mb-4">
+        <p class="mb-0" id="senderName"></p>
+        <p class="mb-0" id="senderAddress" hidden></p>
+        <p class="mb-0" id="senderTownZipCode"></p>
+        <p class="mb-0" id="senderPhone"></p>
+        <p class="mb-0" id="senderEmail"></p>
+      </div>
+      <div class="date" id="date"></div>
+      <div class="subject mb-4" id="object"></div>
+      <div class="body mb-4" id="subject"></div>
+
+      <div class="signature mb-6">
+        <p id="senderSignature"></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const letterData = JSON.parse(localStorage.getItem('letterData'));
+
+      if (letterData) { // Receiver
+        document.getElementById('receiverName').innerText = letterData.receiverName;
+        document.getElementById('receiverAddressTownZipCode').innerText = `${
+          letterData.receiverAddress
+        }, ${
+          letterData.receiverTown
+        }, ${
+          letterData.receiverZipCode
+        }`;
+        document.getElementById('receiverPhone').innerText = letterData.receiverPhone;
+        document.getElementById('receiverEmail').innerText = letterData.receiverEmail;
+
+        // Sender
+        document.getElementById('senderSignature').innerText = letterData.senderName;
+        document.getElementById('senderName').innerText = letterData.senderName;
+        document.getElementById('senderPhone').innerText = letterData.senderPhone;
+        document.getElementById('senderEmail').innerText = letterData.senderEmail;
+        document.getElementById('senderAddress').innerText = letterData.senderAddress;
+        document.getElementById('senderTownZipCode').innerText = `${
+          letterData.senderTown
+        }, ${
+          letterData.senderZipCode
+        }`;
+
+        const currentDate = new Date().toLocaleDateString('fr-FR', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        document.getElementById('date').innerText = `Date: ${currentDate}`;
+
+        document.getElementById('object').innerText = `Objet: ${
+          letterData.object
+        }`;
+        document.getElementById('subject').innerText = letterData.subject;
+      } else {
+        document.getElementById('subject').innerText = "Aucune donnée de lettre trouvée.";
+      }
+    });
+  </script>
+</html>
